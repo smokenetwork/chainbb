@@ -1,0 +1,102 @@
+curl https://steemd.steemit.com --data '{"jsonrpc": "2.0", "method": "call", "params": ["database_api", "get_block", [2889019]], "id": 3}'
+{
+   "id":3,
+   "result":{
+      "previous":"002c153a406e22062f5d2b3afce65e68261e47f3",
+      "timestamp":"2016-07-04T00:00:00",
+      "witness":"bitcube",
+      "transaction_merkle_root":"c1176370f8263dc48b274437d54e490f5c009df0",
+      "extensions":[
+
+      ],
+      "witness_signature":"206e6755fc19f4e8e1ce10c066b85a30fe6c893f39b0955e541dfa36a037604578078597a766a9598eef87623841b24b67c8009e413187872873a624d1308bf7d7",
+      "transactions":[
+         {
+            "ref_block_num":5433,
+            "ref_block_prefix":1713540125,
+            "expiration":"2016-07-04T00:00:09",
+            "operations":[
+               [
+                  "comment",
+                  {
+                     "parent_author":"",
+                     "parent_permlink":"steem",
+                     "author":"nomoreheroes7",
+                     "permlink":"happy-steem-day",
+                     "title":"Happy Steem Day!",
+                     "body":"https://s19.postimg.org/p3tb6g8z7/dawn_of_a_new_day_by_hiamecola_d5oxncv.png\n\nOh, beautiful for decentralized Steem,\nFor amber waves of grain,\nFor purple mountain majesties\nAbove the fruited blockchain!\nSteemit! Steemit!\nGod shed his grace on most,\nAnd crown thy good with upvotehood\nFrom post to shining post!\n\n#steem #4thOfJuly #happydance",
+                     "json_metadata":"{\"tags\":[\"steem\",\"4thOfJuly\",\"happydance\"],\"image\":[\"https://s19.postimg.org/p3tb6g8z7/dawn_of_a_new_day_by_hiamecola_d5oxncv.png\"]}"
+                  }
+               ],
+               [
+                  "vote",
+                  {
+                     "voter":"nomoreheroes7",
+                     "author":"nomoreheroes7",
+                     "permlink":"happy-steem-day",
+                     "weight":10000
+                  }
+               ]
+            ],
+            "extensions":[
+
+            ],
+            "signatures":[
+               "20047aa463037e6a03d2f15f8dbd72bcce4ed256676c30ef9e5cd4cc4a4947efab3328561d1941c946dc6fd487e1395ffa342434b322c263a0742005a7725bf208"
+            ]
+         }
+      ],
+      "block_id":"002c153b35d79734860315dc3c0502fa310403a3",
+      "signing_key":"STM5wf7YDmZdh6L6f5GDDeB239f6WzrLWcrueNywDa69zX8zuXRkA",
+      "transaction_ids":[
+         "2c54b8706525941d1c97f8a58f3bd402d80fcd7f"
+      ]
+   }
+}
+
+
+curl https://steemd.steemit.com --data '{"jsonrpc": "2.0", "id": 3, "method": "call", "params": ["database_api", "get_ops_in_block", [2889019, false]]}'
+{
+   "id":3,
+   "result":[
+      {
+         "trx_id":"2c54b8706525941d1c97f8a58f3bd402d80fcd7f",
+         "block":2889019,
+         "trx_in_block":0,
+         "op_in_trx":0,
+         "virtual_op":0,
+         "timestamp":"2016-07-03T23:59:57",
+         "op":[
+            "comment",
+            {
+               "parent_author":"",
+               "parent_permlink":"steem",
+               "author":"nomoreheroes7",
+               "permlink":"happy-steem-day",
+               "title":"Happy Steem Day!",
+               "body":"https://s19.postimg.org/p3tb6g8z7/dawn_of_a_new_day_by_hiamecola_d5oxncv.png\n\nOh, beautiful for decentralized Steem,\nFor amber waves of grain,\nFor purple mountain majesties\nAbove the fruited blockchain!\nSteemit! Steemit!\nGod shed his grace on most,\nAnd crown thy good with upvotehood\nFrom post to shining post!\n\n#steem #4thOfJuly #happydance",
+               "json_metadata":"{\"tags\":[\"steem\",\"4thOfJuly\",\"happydance\"],\"image\":[\"https://s19.postimg.org/p3tb6g8z7/dawn_of_a_new_day_by_hiamecola_d5oxncv.png\"]}"
+            }
+         ]
+      },
+      {
+         "trx_id":"2c54b8706525941d1c97f8a58f3bd402d80fcd7f",
+         "block":2889019,
+         "trx_in_block":0,
+         "op_in_trx":1,
+         "virtual_op":0,
+         "timestamp":"2016-07-03T23:59:57",
+         "op":[
+            "vote",
+            {
+               "voter":"nomoreheroes7",
+               "author":"nomoreheroes7",
+               "permlink":"happy-steem-day",
+               "weight":10000
+            }
+         ]
+      }
+   ]
+}
+
+
