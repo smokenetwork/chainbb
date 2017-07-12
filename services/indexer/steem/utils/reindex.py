@@ -10,10 +10,14 @@ import os
 
 # Connections
 nodes = [
-    'https://steemd.steemit.com'
+   'https://steemd.steemit.com'
+#     'http://192.168.1.25:8090'
 ]
 s = Steem(nodes)
-mongo = MongoClient("mongodb://mongo")
+# mongo = MongoClient("mongodb://mongo")
+# mongo = MongoClient("mongodb://localhost")
+mongo = MongoClient("mongodb://51.15.65.204")
+
 db = mongo.forums
 
 data = json.loads(sys.argv[1])
@@ -109,6 +113,7 @@ def update_parent(data):
 
 if __name__ == '__main__':
     pprint("[FORUM][REINDEXER] - Starting script...")
+    #sys.stdout.flush()
     update_forum(data)
     update_posts(data)
     update_replies(data)

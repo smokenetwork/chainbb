@@ -145,10 +145,10 @@ class HeaderMenu extends Component {
       }
     }
     return (
-      <Menu color='blue' size='large' inverted style={{borderBottom: '3px solid #767676'}}>
+      <Menu color='black' size='large' inverted style={{borderBottom: '3px solid #767676'}}>
         <Container>
           <Link to='/' className='title active item'>
-            <strong>chainBB.com</strong>
+            <strong>eostalk.io</strong>
           </Link>
           {/*
           <Link to='/' className='title item'>General</Link>

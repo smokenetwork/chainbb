@@ -24,7 +24,7 @@ class Sidebar extends React.Component {
     let subscribedForums = false
         // ,
         // categories = (
-        //   <Menu vertical fluid color='blue' size='small'>
+        //   <Menu vertical fluid color='grey' size='small'>
         //     <Link className={`item ${(!forums || !forums.group) ? 'active' : ''}`} to='/'>
         //       General Forums
         //     </Link>
@@ -63,7 +63,7 @@ class Sidebar extends React.Component {
               <Header size='small' textAlign='center'>
                 Forum Subscriptions
               </Header>
-              <Menu vertical fluid color='blue' size='small'>
+              <Menu vertical fluid color='grey' size='small'>
                 {Object.keys(forums).map((index) => {
                   return (
                     <Link
@@ -95,7 +95,7 @@ class Sidebar extends React.Component {
         }
       }
       userMenu = (
-        <Menu vertical fluid color='blue' size='small'>
+        <Menu vertical fluid color='grey' size='small'>
           <Link className={`item ${(section && section === 'feed') ? 'active' : ''}`} to='/feed'>
             <Icon name='users' />
             Activity Feed
@@ -109,7 +109,7 @@ class Sidebar extends React.Component {
     }
     return (
       <div>
-        <Menu vertical fluid color='blue' size='small'>
+        <Menu vertical fluid color='grey' size='small'>
           <Link className={`item ${(section && section === 'index') ? 'active' : ''}`} to='/'>
             <Icon name='home' />
             Forum Index

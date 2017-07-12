@@ -24,7 +24,7 @@ class BreadcrumbMenu extends Component {
                 {trail.map((crumb, i) => <span key={i}>
                   {!!i && <Breadcrumb.Divider style={{margin: '0 0.3rem'}}></Breadcrumb.Divider>}
                   <Link to={crumb.link} className='section'>
-                    {!i && <Icon name='home' color='blue' />}
+                    {!i && <Icon name='home' color='grey' />}
                     {crumb.name}
                   </Link>
                 </span>)}

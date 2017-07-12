@@ -142,7 +142,7 @@ export default class LoginModal extends React.Component {
           </Modal.Content>
           <Modal.Actions>
             <Button color='orange' onClick={this.handleClose}>Cancel</Button>
-            <Button color='blue' icon onClick={this.handleSubmit}>Sign-in <Icon name='right chevron' /></Button>
+            <Button color='grey' icon onClick={this.handleSubmit}>Sign-in <Icon name='right chevron' /></Button>
           </Modal.Actions>
         </Modal>
       )

@@ -14,8 +14,8 @@ export default class PostSidebar extends React.Component {
       info = (
         <div>
           <Divider horizontal>Post Info</Divider>
-          <Menu color='blue' inverted fluid vertical>
-            <Dropdown color='blue' text='View this post on...' size='small' pointing='left' className='link item'>
+          <Menu color='grey' inverted fluid vertical>
+            <Dropdown color='grey' text='View this post on...' size='small' pointing='left' className='link item'>
               <Dropdown.Menu>
                 <a href={`https://steemit.com${post.url}`} target='_blank' className='item'>
                   <Icon name='external' />

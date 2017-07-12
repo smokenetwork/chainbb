@@ -1,5 +1,6 @@
 flask
 flask-cors
-pymongo==3.3.1
+#pymongo==3.3.1
+pymongo
 steem
 uwsgi

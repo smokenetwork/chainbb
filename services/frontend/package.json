@@ -21,6 +21,7 @@
     "react-scrollable-anchor": "^0.4.2",
     "react-timeago": "^3.2.0",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "remarkable": "1.6.2",
     "sanitize-html": "^1.11.4",
     "semantic-ui-react": "^0.67.0",

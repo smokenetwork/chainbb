@@ -29,14 +29,14 @@ export default class HeaderMenu extends Component {
             </Grid.Column>
             */}
             <Grid.Column width={16} textAlign='center'>
-              <h4 className="ui inverted header">chainBB.com</h4>
+              <h4 className="ui inverted header">eostalk.io</h4>
               <p>
-                An experimental forum build on top of the
-                <a href='https://steemit.com' target='_new'> Steem </a>
-                blockchain,
+                the
+                <a href='https://eos.io/' target='_new'> EOS </a>
+                Community,
                 <br />
-                brought to you by
-                <a href='http://jesta.us' target='_new'> jesta</a>.
+                powered by
+                <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a>.
               </p>
             </Grid.Column>
           </Grid>

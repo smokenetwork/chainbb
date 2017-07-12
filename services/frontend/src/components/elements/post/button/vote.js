@@ -43,7 +43,7 @@ export default class VoteButton extends React.Component {
         text = 'Vote',
         icon = (this.props.error ? 'warning sign icon' : 'thumbs up' + (!active ? ' outline' : '')),
         onClick = this.props.error ? this.clearError : this.castVote,
-        color = (!active ? (this.props.error ? 'red' : 'blue') : 'purple'), // Blue if able to vote, Purple if voted, Red if error
+        color = (!active ? (this.props.error ? 'red' : 'grey') : 'purple'), // grey if able to vote, Purple if voted, Red if error
         tooltip = `Click to cast your vote with ${weight}% of your voting power.`,
         adjuster = false,
         // Placeholder button until user is recognized / logged in

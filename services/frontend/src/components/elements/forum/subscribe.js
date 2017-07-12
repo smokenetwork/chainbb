@@ -27,7 +27,7 @@ export default class ForumSubscribe extends React.Component {
     return (
       <Button
         icon='plus circle'
-        color='blue'
+        color='grey'
         content='Subscribe'
         onClick={this.onSubscribe}
         value={forum}

@@ -53,7 +53,7 @@ export default class PostFormFieldTags extends React.Component {
             <Header>
               Post Category
               <Header.Subheader>
-                The post category determines where the post is placed within chainBB.com's forums and serves as the first tag on each post.
+                The post category determines where the post is placed within forums and serves as the first tag on each post.
               </Header.Subheader>
             </Header>
             <Table definition>
@@ -62,7 +62,7 @@ export default class PostFormFieldTags extends React.Component {
                 <Table.Row>
                   <Table.Cell collapsing>Post Category</Table.Cell>
                   <Table.Cell>
-                    <Label horizontal size='large' color='blue' style={{marginBottom: '5px'}} content={category} />
+                    <Label horizontal size='large' color='grey' style={{marginBottom: '5px'}} content={category} />
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row>

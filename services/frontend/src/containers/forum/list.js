@@ -89,16 +89,16 @@ class ForumList extends React.Component {
       }
       return(
         <div>
-          <Segment stacked color="blue">
+          <Segment stacked color="grey">
             <Grid>
               <Grid.Row>
                 <Grid.Column width={12}>
                   <Header
                     icon='list layout'
-                    color='blue'
+                    color='grey'
                     size='huge'
                     content='All Forums'
-                    subheader='Every forum that exists within chainBB listed in alphabetical order'
+                    subheader='forums are listed in alphabetical order'
                   />
                 </Grid.Column>
               </Grid.Row>

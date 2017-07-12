@@ -55,11 +55,11 @@ export default class ForumPost extends React.Component {
               {(topic.cbb && topic.cbb.sticky)
                 ? <Icon size='large' name='pin' />
                 : (topic.children > 50)
-                ? <Icon color='blue' size='large' name='chevron right' />
+                ? <Icon color='grey' size='large' name='chevron right' />
                 : (topic.children > 20)
-                ? <Icon color='blue' size='large' name='angle double right' />
+                ? <Icon color='grey' size='large' name='angle double right' />
                 : (topic.children > 0)
-                ? <Icon color='blue' size='large' name='angle right' />
+                ? <Icon color='grey' size='large' name='angle right' />
                 : <Icon />
               }
             </Grid.Column>

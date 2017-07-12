@@ -28,7 +28,7 @@ export default class FeedPost extends React.Component {
               {(topic.reblogged_by.length > 0)
                 ? (
                   <Popup
-                    trigger={<Icon size='large' name='repeat' color='blue' />}
+                    trigger={<Icon size='large' name='repeat' color='grey' />}
                     position='left center'
                     hoverable
                     content={

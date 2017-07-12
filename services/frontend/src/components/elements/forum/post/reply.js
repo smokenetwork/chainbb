@@ -47,7 +47,7 @@ export default class ForumPostReply extends React.Component {
                   content='Thread'
                   size='small'
                   basic
-                  color='blue'
+                  color='grey'
                 />
                 <AccountAvatar username={reply.author} />
                 <AccountLink username={reply.author} />

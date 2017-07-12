@@ -117,7 +117,7 @@ class Forums extends React.Component {
               </Header.Subheader>
             </Header>
             <Divider horizontal>
-              Recent chainBB users
+              Recent users
             </Divider>
             {users.list.map((user, i) => <span key={i}>
               {!!i && ", "}
@@ -174,13 +174,13 @@ class Forums extends React.Component {
       }
       return(
         <div>
-          <Segment stacked color="blue">
+          <Segment stacked color="grey">
             <Grid>
               <Grid.Row>
                 <Grid.Column width={12}>
                   <Header
                     icon='users'
-                    color='blue'
+                    color='grey'
                     size='huge'
                     content='Forum Index'
                     subheader='A curated list of forum categories to get you started'

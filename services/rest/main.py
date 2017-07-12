@@ -14,6 +14,7 @@ db = mongo.forums
 
 nodes = [
     'http://steem.chainbb.com'
+#    'http://192.168.1.25:8090'
 ]
 s = Steem(nodes)
 
@@ -88,7 +89,8 @@ def index():
         "localtesting", # localtesting never exists on live, only in dev
         "projects",
         "crypto",
-        "community"
+        "community",
+        "eos"
       ]}
     }
     sort = [("group_order",1),("forum_order",1)]
@@ -259,6 +261,15 @@ def crypto():
 def steem():
     query = {
       "group": {"$in": ["steem-general", "steem-projects"]}
+    }
+    sort = [("group_order",1),("forum_order",1)]
+    results = db.forums.find(query).sort(sort)
+    return response(list(results))
+
+@app.route("/eos")
+def eos():
+    query = {
+      "group": {"$in": ["eos"]}
     }
     sort = [("group_order",1),("forum_order",1)]
     results = db.forums.find(query).sort(sort)

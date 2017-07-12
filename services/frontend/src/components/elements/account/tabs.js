@@ -34,7 +34,7 @@ export default class AccountActivity extends React.Component {
     }
     return (
       <div>
-        <Menu pointing color="blue" attached="top" size="large" secondary>
+        <Menu pointing color="grey" attached="top" size="large" secondary>
           <Menu.Item name='posts' active={tab === 'posts'} onClick={this.changeTab} />
           <Menu.Item name='responses' active={tab === 'responses'} onClick={this.changeTab} />
           <Menu.Item name='replies' active={tab === 'replies'} onClick={this.changeTab} />

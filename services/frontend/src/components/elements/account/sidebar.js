@@ -47,8 +47,8 @@ export default class AccountSidebar extends React.Component {
           />
         </Segment>
         <Divider horizontal>Account Info</Divider>
-        <Menu color='blue' inverted fluid vertical>
-          <Dropdown color='blue' text='View this account on...' size='small' pointing='left' className='link item'>
+        <Menu color='grey' inverted fluid vertical>
+          <Dropdown color='grey' text='View this account on...' size='small' pointing='left' className='link item'>
             <Dropdown.Menu>
               <a href={`https://steemit.com/@${username}`} target='_blank' className='item'>
                 <Icon name='external' />

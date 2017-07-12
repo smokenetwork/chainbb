@@ -12,6 +12,7 @@ db = mongo.forums
 def l(msg):
     caller = inspect.stack()[1][3]
     print("[FORUM][STATISTICS][{}] {}".format(str(caller), str(msg)))
+    sys.stdout.flush()
 
 def update_statistics():
   l("Updating stats for all forums...")

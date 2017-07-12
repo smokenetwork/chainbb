@@ -48,7 +48,7 @@ export default class ForumTitle extends React.Component {
     )
 
     return (
-      <Segment attached={attached} color="blue">
+      <Segment attached={attached} color="grey">
         <Grid>
           <Grid.Row>
             <Grid.Column width={12}>
@@ -70,7 +70,7 @@ export default class ForumTitle extends React.Component {
               <p>
                 Managed by
                 {' '}
-                <AccountLink username='chainbb' />
+                <AccountLink username='officialfuzzy' />
                 {' '}
               </p>
             </Grid.Column>

@@ -14,14 +14,19 @@ import os
 
 # Connections
 nodes = [
-    'http://localhost:5090',
+    # 'http://10.9.6.73:8090'
+    # 'http://51.15.55.185:8090'
+    'http://localhost:8090'
+    # 'https://steemd.steemit.com'
+    # 'http://192.168.1.25:8090'
 ]
 
 s = Steem(nodes)
 b = Blockchain(steemd_instance=s, mode='head')
 c = Converter(steemd_instance=s)
 
-mongo = MongoClient("mongodb://mongo")
+# mongo = MongoClient("mongodb://mongo")
+mongo = MongoClient("mongodb://localhost")
 db = mongo.forums
 
 # Determine which block was last processed
@@ -29,7 +34,7 @@ init = db.status.find_one({'_id': 'height_processed'})
 if(init):
   last_block_processed = int(init['value'])
 else:
-  last_block_processed = 1
+  last_block_processed = 10000000
 
 props = {}
 forums_cache = {}
@@ -43,6 +48,7 @@ vote_queue = []
 # This is useful for when you need the index to catch up to the latest block
 # ------------
 quick_value = 100
+#quick_value = 1000000000
 
 # ------------
 # For development:
@@ -54,20 +60,71 @@ quick_value = 100
 # ------------
 
 # last_block_processed = 12880609
+# tuanpa added for testing
+# last_block_processed = 12880771
+
+
+matched_tags = ['eos', 'eosio', 'eos-project', 'eos-help', 'eos-support', 'eos-dev', 'eosdev', 'eos-dapp', 'eos-launchpad']
 
 def l(msg):
     caller = inspect.stack()[1][3]
     print("[FORUM][INDEXER][{}] {}".format(str(caller), str(msg)))
     sys.stdout.flush()
 
-def process_op(op, quick=False):
+def find_root_comment(comment):
+    # check if this is root post
+    if comment['parent_author'] == '':
+        return comment
+    else:
+        parent_author = comment['parent_author']
+        parent_permlink = comment['parent_permlink']
+        parent_id = parent_author + '/' + parent_permlink
+        # Grab the parsed data of the post
+        # l(parent_id)
+        parent_comment = parse_post(parent_id, parent_author, parent_permlink)
+        return find_root_comment(parent_comment)
+
+def is_filtered(comment):
+    # check if comment should be EOS content weather root post contains:
+    #   - author: eosio
+    #   - tags: eos, eosio, eos-project, eos-help, eos-support, eos-dev, eosdev, eos-dapp, eos-launchpad
+
+    root_comment = find_root_comment(comment)
+
+    if root_comment['author'] == 'eosio':
+        return True
+
+
+    json_metadata = root_comment['json_metadata']
+
+    if isinstance(json_metadata, dict) and 'tags' in json_metadata and isinstance(json_metadata['tags'], list):
+        if any(tag in matched_tags for tag in json_metadata['tags']):
+            return True
+    else:
+        if isinstance(json_metadata, str) and len(json_metadata) > 0:
+            metadata = json.loads(json_metadata)
+            if 'tags' in metadata:
+                if any(tag in matched_tags for tag in metadata['tags']):
+                    return True
+
+    return False
+
+def process_op(op, block, quick=False):
     # Split the array into type and data
-    opType = op['op'][0]
-    opData = op['op'][1]
+    # opType = op['op'][0]
+    # opData = op['op'][1]
+
+    # fix when not using get_ops_in_block
+    opType = op[0]
+    opData = op[1]
+
     if opType == "vote" and quick == False:
         queue_parent_update(opData)
     if opType == "comment":
-        process_post(opData, op, quick=False)
+        #process_post(opData, op, quick=False)
+        # fix when not using get_ops_in_block
+        process_post(opData, block, quick=False)
+
     if opType == "delete_comment":
         remove_post(opData)
 
@@ -243,8 +300,14 @@ def update_forums(comment):
 
 def process_vote(_id, author, permlink):
     # Grab the parsed data of the post
-    l(_id)
     comment = parse_post(_id, author, permlink)
+
+    # tuanpa added here
+    if is_filtered(comment) == False:
+        return
+
+    l(_id)
+
     # Ensure we a post was returned
     if comment['author'] != '':
         comment.update({
@@ -273,6 +336,7 @@ def collapse_votes(votes):
         ])
     return collapsed
 
+# op is actually block for fixing not using get_ops_in_block
 def process_post(opData, op, quick=False):
     # Derive the timestamp
     ts = float(datetime.strptime(op['timestamp'], "%Y-%m-%dT%H:%M:%S").strftime("%s"))
@@ -281,8 +345,14 @@ def process_post(opData, op, quick=False):
     permlink = opData['permlink']
     _id = author + '/' + permlink
     # Grab the parsed data of the post
-    l(_id)
     comment = parse_post(_id, author, permlink)
+
+    # tuanpa added here
+    if is_filtered(comment) == False:
+        return
+
+    l(_id)
+
     # Determine where it's posted from, and record for active users
     if isinstance(comment['json_metadata'], dict) and 'app' in comment['json_metadata'] and not quick:
       app = comment['json_metadata']['app'].split("/")[0]
@@ -358,7 +428,7 @@ def process_global_props():
     # Save steem_per_mvests
     db.status.update({'_id': 'sbd_median_price'}, {"$set" : {'value': c.sbd_median_price()}}, upsert=True)
     db.status.update({'_id': 'steem_per_mvests'}, {"$set" : {'value': c.steem_per_mvests()}}, upsert=True)
-    l("Props updated to #{}".format(props['last_irreversible_block_num']))
+    #l("Props updated to #{}".format(props['last_irreversible_block_num']))
 
 def process_rewards_pools():
     # Save reward pool info
@@ -383,24 +453,66 @@ if __name__ == '__main__':
     scheduler.start()
 
     quick = False
-    for block in b.stream_from(start_block=last_block_processed, batch_operations=True):
-        if(len(block) > 0):
-            block_num = block[0]['block']
-            timestamp = block[0]['timestamp']
-            # If behind by more than X (for initial indexes), set quick to true to prevent unneeded past operations
-            remaining_blocks = props['last_irreversible_block_num'] - block_num
-            if remaining_blocks > quick_value:
-                quick = True
-            dt = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")
-            l("----------------------------------")
-            l("#{} - {} - {} ops ({} remaining|quick:{})".format(block_num, dt, len(block), remaining_blocks, quick))
-            for op in block:
-                # pprint("-----------------------------")
-                # pprint(op)
-                # pprint(last_block_processed)
-                # pprint("-----------------------------")
-                # Process op
-                process_op(op, quick=quick)
+    # for block in b.stream_from(start_block=last_block_processed, batch_operations=True):
+    #     if(len(block) > 0):
+    #         block_num = block[0]['block']
+    #         timestamp = block[0]['timestamp']
+    #         # If behind by more than X (for initial indexes), set quick to true to prevent unneeded past operations
+    #         remaining_blocks = props['last_irreversible_block_num'] - block_num
+    #         if remaining_blocks > quick_value:
+    #             quick = True
+    #         dt = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")
+    #         l("----------------------------------")
+    #         l("#{} - {} - {} ops ({} remaining|quick:{})".format(block_num, dt, len(block), remaining_blocks, quick))
+    #         for op in block:
+    #             # pprint("-----------------------------")
+    #             # pprint(op)
+    #             # pprint(last_block_processed)
+    #             # pprint("-----------------------------")
+    #             # Process op
+    #             process_op(op, quick=quick)
+    #
+    #         # Update our saved block height
+    #         db.status.update({'_id': 'height_processed'}, {"$set" : {'value': block_num}}, upsert=True)
 
-            # Update our saved block height
-            db.status.update({'_id': 'height_processed'}, {"$set" : {'value': block_num}}, upsert=True)
+
+    ######################################################################
+    # tuanpa modify to use get_block instead of get_ops_in_block to avoid enabling account_history plugin on steemd
+    # for idx,block in enumerate(b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True)):
+
+
+    last_save_height_time = time.time()
+    last_save_block_processed = last_block_processed
+
+    while True :
+        for block in b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True):
+            if(len(block) > 0):
+                #block_num = block[0]['block']
+                # block_num = last_block_processed
+                timestamp = block['timestamp']
+                # If behind by more than X (for initial indexes), set quick to true to prevent unneeded past operations
+                remaining_blocks = props['last_irreversible_block_num'] - last_block_processed
+                if remaining_blocks > quick_value:
+                    quick = True
+                elif remaining_blocks == 0:
+                    time.sleep(3)   # Delay for 3s
+                    continue
+
+                dt = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")
+                l("----------------------------------")
+                l("#{} - {} - {} ops ({} remaining|quick:{})".format(last_block_processed, dt, len(block), remaining_blocks, quick))
+
+                # for op in block:
+                #     process_op(op, quick=quick)
+
+                for tx in block['transactions']:
+                    for op in tx['operations']:
+                        process_op(op, block, quick=quick)
+
+                # Update our saved block height
+                if (time.time() - last_save_height_time > 3) or (last_block_processed - last_save_block_processed > 1000):
+                    db.status.update({'_id': 'height_processed'}, {"$set" : {'value': last_block_processed}}, upsert=True)
+                    last_save_height_time = time.time()
+                    last_save_block_processed = last_block_processed
+
+                last_block_processed +=1

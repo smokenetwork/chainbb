@@ -61,7 +61,7 @@ class Forum extends React.Component {
         <Header>
           Your post has been submitted!
           <Header.Subheader>
-            It may take a few moments to appear on chainBB.com.
+            It may take a few moments to appear on forum.
           </Header.Subheader>
         </Header>
       ),
