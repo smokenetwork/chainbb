@@ -77,7 +77,7 @@ class PostForm extends React.Component {
           <Header>
             Draft Loaded
             <Header.Subheader>
-              chainBB has loaded unsubmitted draft you had for this forum/thread. Hit cancel to delete this draft.
+              eostalk has loaded unsubmitted draft you had for this forum/thread. Hit cancel to delete this draft.
             </Header.Subheader>
           </Header>
         ),

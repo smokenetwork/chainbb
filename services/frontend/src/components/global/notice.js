@@ -18,7 +18,7 @@ class GlobalNotice extends Component {
         <Container style={{margin: '0.5em 0 1em'}}>
           <Message warning>
             <Icon name='warning' />
-            chainBB is currently <strong>{blocksBehind} blocks</strong> (<TimeAgo date={timeBehind} />) behind on syncronization due to networking issues. This may cause a delay in your actions displaying on chainBB.com.
+            eostalk is currently <strong>{blocksBehind} blocks</strong> (<TimeAgo date={timeBehind} />) behind on syncronization due to networking issues. This may cause a delay in your actions displaying on eostalk.io.
           </Message>
         </Container>
       )
