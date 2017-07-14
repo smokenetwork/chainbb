@@ -481,8 +481,8 @@ if __name__ == '__main__':
     # for idx,block in enumerate(b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True)):
 
 
-    last_save_height_time = time.time()
-    last_save_block_processed = last_block_processed
+    # last_save_height_time = time.time()
+    # last_save_block_processed = last_block_processed
 
     while True :
         for block in b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True):
@@ -510,9 +510,9 @@ if __name__ == '__main__':
                         process_op(op, block, quick=quick)
 
                 # Update our saved block height
-                if (time.time() - last_save_height_time > 3) or (last_block_processed - last_save_block_processed > 1000):
-                    db.status.update({'_id': 'height_processed'}, {"$set" : {'value': last_block_processed}}, upsert=True)
-                    last_save_height_time = time.time()
-                    last_save_block_processed = last_block_processed
+                # if (time.time() - last_save_height_time > 3) or (last_block_processed - last_save_block_processed > 1000):
+                db.status.update({'_id': 'height_processed'}, {"$set" : {'value': last_block_processed}}, upsert=True)
+                    # last_save_height_time = time.time()
+                    # last_save_block_processed = last_block_processed
 
                 last_block_processed +=1
