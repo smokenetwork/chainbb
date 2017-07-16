@@ -12,21 +12,28 @@ import time
 import sys
 import os
 
+# load config from json file
+with open('config.json') as json_config_file:
+    config = json.load(json_config_file)
+
+
 # Connections
-nodes = [
+# nodes = [
     # 'http://10.9.6.73:8090'
     # 'http://51.15.55.185:8090'
-    'http://localhost:8090'
+    # 'http://localhost:8090'
     # 'https://steemd.steemit.com'
     # 'http://192.168.1.25:8090'
-]
+# ]
 
-s = Steem(nodes)
+# s = Steem(nodes)
+s = Steem(config['steemd_nodes'])
 b = Blockchain(steemd_instance=s, mode='head')
 c = Converter(steemd_instance=s)
 
 # mongo = MongoClient("mongodb://mongo")
-mongo = MongoClient("mongodb://localhost")
+# mongo = MongoClient("mongodb://localhost")
+mongo = MongoClient(config['mongo_url'])
 db = mongo.forums
 
 # Determine which block was last processed
