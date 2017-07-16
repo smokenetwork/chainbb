@@ -5,6 +5,8 @@ import { Divider, Header, Icon, Menu, Segment } from 'semantic-ui-react'
 import * as accountActions from '../actions/accountActions'
 import { Link } from 'react-router-dom'
 
+import Iframe from 'react-iframe'
+
 class Sidebar extends React.Component {
   render() {
     // const forums = this.props.forums;
@@ -123,6 +125,8 @@ class Sidebar extends React.Component {
         {subscribedForums}
         <Divider />
         {requestForum}
+
+        <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
       </div>
     )
   }
