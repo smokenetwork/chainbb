@@ -29,15 +29,12 @@ export default class HeaderMenu extends Component {
             </Grid.Column>
             */}
             <Grid.Column width={16} textAlign='center'>
-              <h4 className="ui inverted header">eostalk.io</h4>
-              <p>
-                the
-                <a href='https://eos.io/' target='_new'> EOS </a>
-                Community,
-                <br />
-                powered by
-                <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a>.
-              </p>
+
+              <h4 className="ui inverted header">
+                <img src="/logo.png" className="ui image" />
+                eostalk.io
+              </h4>
+              <p>the <a href='https://eos.io/' target='_new'> EOS </a> Community, beta version, powered by <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
             </Grid.Column>
           </Grid>
         </Container>
