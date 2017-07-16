@@ -222,9 +222,9 @@ class Forum extends React.Component {
             { ... this.props } />
         )
       } else {
-        if(topics.length > 0) {
+        if(topics.length >= 0) {
           posts = (forum.stats) ? forum.stats.posts : 0
-          if(topics.length > 0) {
+          if(topics.length >= 0) {
             rows = topics.map((topic, idx) => <ForumPost topic={topic} key={idx} />)
             controls = (
               <Grid.Row>
