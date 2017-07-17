@@ -147,9 +147,9 @@ class HeaderMenu extends Component {
     return (
       <Menu color='black' size='large' inverted style={{borderBottom: '3px solid #767676'}}>
         <Container>
-          <div className="item">
+          <Link to='/' className='item'>
             <img src="/logo.png" />
-          </div>
+          </Link>
           <Link to='/' className='title active item'>
             <strong>eostalk.io</strong>
           </Link>
