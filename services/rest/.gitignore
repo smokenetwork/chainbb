@@ -1,0 +1,5 @@
+# dont put config.json to git
+config.json
+
+# ide
+.idea

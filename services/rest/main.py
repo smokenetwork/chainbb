@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, jsonify, request
 from pprint import pprint
 from pymongo import MongoClient
@@ -6,17 +8,26 @@ from flask_cors import CORS, cross_origin
 from mongodb_jsonencoder import MongoJsonEncoder
 from steem import Steem
 
+
+# load config from json file
+print('Reading config.json file')
+with open('config.json') as json_config_file:
+  config = json.load(json_config_file)
+print(config)
+
+
 app = Flask(__name__)
 app.json_encoder = MongoJsonEncoder
 CORS(app)
-mongo = MongoClient("mongodb://mongo", connect=False)
+# mongo = MongoClient("mongodb://mongo", connect=False)
+mongo = MongoClient(config['mongo_url'], connect=False)
 db = mongo.forums
 
-nodes = [
-    'http://steem.chainbb.com'
+# nodes = [
+#     'http://steem.chainbb.com'
 #    'http://192.168.1.25:8090'
-]
-s = Steem(nodes)
+# ]
+s = Steem(config['steemd_nodes'])
 
 def response(json, forum=False, children=False):
     # Load height

@@ -1,0 +1,7 @@
+{
+  "mongo_url":"mongodb://username:password@localhost",
+  "steemd_nodes": [
+    "https://steemd.steemit.com",
+    "https://steem.chainbb.com/"
+  ]
+}
