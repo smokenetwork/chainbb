@@ -9,3 +9,6 @@ services/frontend/build
 services/frontend/node_modules
 services/rest/__pycache__
 services/test
+
+.idea
+out
