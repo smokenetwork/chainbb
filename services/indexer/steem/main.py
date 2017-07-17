@@ -13,9 +13,10 @@ import sys
 import os
 
 # load config from json file
+print('Reading config.json file')
 with open('config.json') as json_config_file:
     config = json.load(json_config_file)
-
+print(config)
 
 # Connections
 # nodes = [
