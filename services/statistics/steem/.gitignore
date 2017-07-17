@@ -1,0 +1,8 @@
+# dont put config.json to git
+config.json
+
+# temp/test file
+test.py
+
+# ide
+.idea

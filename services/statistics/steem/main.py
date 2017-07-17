@@ -1,3 +1,5 @@
+import json
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from pprint import pprint
 from pymongo import MongoClient
@@ -6,7 +8,13 @@ import inspect
 import sys
 import os
 
-mongo = MongoClient("mongodb://mongo")
+# load config from json file
+print('Reading config.json file')
+with open('/src/config.json') as json_config_file:
+  config = json.load(json_config_file)
+print(config)
+
+mongo = MongoClient(config['mongo_url'])
 db = mongo.forums
 
 def l(msg):
