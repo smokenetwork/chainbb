@@ -126,7 +126,10 @@ class Sidebar extends React.Component {
         <Divider />
         {requestForum}
 
+        <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
+
         <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
+
       </div>
     )
   }
