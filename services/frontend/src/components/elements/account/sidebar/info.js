@@ -13,6 +13,9 @@ export default class AccountSidebarInfo extends React.Component {
             shortFormat: true,
             shortFormatMinValue: 1000
           }
+
+    // console.log(account)
+
     return (
       <Table definition size="small">
         <Table.Body>
@@ -35,6 +38,13 @@ export default class AccountSidebarInfo extends React.Component {
           <Table.Row>
             <Table.Cell>Voting Power</Table.Cell>
             <Table.Cell>{account.voting_power / 100}%</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Balance</Table.Cell>
+            <Table.Cell>
+              {account.balance} <br />
+              {account.sbd_balance}
+            </Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
