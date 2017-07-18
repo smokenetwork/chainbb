@@ -12,3 +12,5 @@ services/test
 
 .idea
 out
+
+frontend_update.sh
