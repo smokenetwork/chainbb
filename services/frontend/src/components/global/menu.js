@@ -83,18 +83,20 @@ class HeaderMenu extends Component {
     )
     if (name) {
       avatar = (
+        <span>
         <AccountAvatar
-          className=""
-          noLink={true}
-          size={35}
-          style={{margin: 0}}
-          username={name}
-        />
+            className="ui avatar image"
+            noLink={true}
+            size={35}
+            style={{margin: 0}}
+            username={name}
+          /> {name}
+        </span>
       )
       userItem = (
         <Dropdown style={{padding: '0 1.1em'}} item trigger={avatar} pointing='top right' icon={null} className='icon'>
           <Dropdown.Menu>
-            <Dropdown.Item as="a" href={`/@${name}`} icon="user" content={name} />
+            <Dropdown.Item as="a" href={`/@${name}`} icon="user" content="Profile" />
             <LogoutItem {...this.props} />
           </Dropdown.Menu>
         </Dropdown>
