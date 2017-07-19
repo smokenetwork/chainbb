@@ -254,7 +254,7 @@ export default class PostFormFieldRewards extends React.Component {
               </Table>
               <Header>
                 <Header.Subheader>
-                  An additional 25% is allocated to Curators on the Steem blockchain, as well as 15% to the chainBB Team and Community.
+                  An additional 25% is allocated to Curators on the Steem blockchain, as well as 15% to the chainBB Team, the eostalk Team and Community.
                 </Header.Subheader>
                 <Header.Subheader>
                   <small>
