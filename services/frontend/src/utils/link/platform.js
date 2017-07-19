@@ -19,6 +19,9 @@ export default class PlatformLink extends React.Component {
           case "steemit":
             link = <a rel='nofollow' alt={`${id}/${version}`} href='https://steemit.com'>steemit/{version}</a>
             break
+          case "eostalk":
+            link = <a rel='nofollow' alt={`${id}/${version}`} href='https://eostalk.io'>eostalk/{version}</a>
+            break
           default:
             break
         }
