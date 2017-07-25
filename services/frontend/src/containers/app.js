@@ -41,7 +41,7 @@ class App extends React.Component {
                   <Route path="/feed" component={withTracker(FeedLayout)} />
                   <Route path="/forums" component={withTracker(ForumsLayout)} />
                   <Route path="/forums/:group" component={withTracker(IndexLayout)} />
-                  <Route path="/forum/:id" component={withTracker(ForumLayout)} />
+                  <Route path="/forum/:id/:pageNo?" component={withTracker(ForumLayout)} />
                   <Route path="/replies" component={withTracker(RepliesLayout)} />
                   <Route path="/topic/:category" component={withTracker(TopicLayout)} />
                   <Route path="/:category/@:author/:permlink" component={withTracker(Thread)} />
@@ -53,33 +53,5 @@ class App extends React.Component {
         )
     }
 }
-
-// const App = () => {
-//   return (
-//     <BrowserRouter history={browserHistory}>
-//       <AppContainer>
-//         <div className="AppContainer">
-//           <Match pattern="/" component={GoogleAnalytics} />
-//           <HeaderMenu />
-//           <BreadcrumbMenu />
-//           <GlobalNotice />
-//           <Container>
-//             <Route exact path="/" component={IndexLayout} />
-//             <Route path="/@:username" component={Account} />
-//             <Route path="/feed" component={FeedLayout} />
-//             <Route path="/forums" component={ForumsLayout} />
-//             <Route path="/forums/:group" component={IndexLayout} />
-//             <Route path="/forum/:id" component={ForumLayout} />
-//             <Route path="/replies" component={RepliesLayout} />
-//             <Route path="/topic/:category" component={TopicLayout} />
-//             <Route path="/:category/@:author/:permlink" component={Thread} />
-//           </Container>
-//           <BreadcrumbMenu />
-//           <FooterMenu />
-//         </div>
-//       </AppContainer>
-//     </BrowserRouter>
-//   )
-// }
 
 export default App

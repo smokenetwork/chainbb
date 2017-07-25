@@ -23,13 +23,16 @@ import ForumPost from '../components/elements/forum/post'
 import PostForm from './post/form'
 import PostFormHeader from '../components/elements/post/form/header'
 
+// import { browserHistory } from 'react-router-dom';
+import PropTypes from 'prop-types'
+
 class Forum extends React.Component {
   constructor(props, state) {
     goToTop()
     super(props, state);
     this.state = {
       children: [],
-      page: 1,
+      page: this.props.pageNo,
       topics: false,
       showNewPost: false,
       forum: {
@@ -42,6 +45,11 @@ class Forum extends React.Component {
   changePage = (page) => {
     this.setState({page: page})
     this.getForum(page)
+    // browserHistory.push('/')
+    // console.log("changePage - page=" + page)
+    const url = '/forum/' + this.props.forumid + "/" + page;
+    // console.log("changePage - url=" + url);
+    this.context.router.history.push(url);
   }
 
   showNewPost = (e) => {
@@ -95,10 +103,10 @@ class Forum extends React.Component {
   }
 
   componentDidMount() {
-    this.getForum()
+    this.getForum(this.state.page)
   }
 
-  async getForum(page = 1) {
+  async getForum(page=1) {
     this.setState({
       topics: false,
       showNewPost: false,
@@ -327,3 +335,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Forum);
+
+Forum.contextTypes = {
+  router: PropTypes.object
+}
