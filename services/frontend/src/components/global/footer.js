@@ -32,9 +32,9 @@ export default class HeaderMenu extends Component {
 
               <h4 className="ui inverted header">
                 <img src="/logo.png" className="ui image" />
-                eostalk.io
+                Smoke.Network
               </h4>
-              <p>the <a href='https://alpha.smoke.network/' target='_new'> SMOKE.NETWORK </a> Community, alpha version, powered by <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
+              <p>the <a href='https://alpha.smoke.network/' target='_new'> Cannabis </a> Community, alpha version, powered by <a href='https://beta.chainbb.com/' target='_new'> chainbb.com</a></p>
 
               
 
