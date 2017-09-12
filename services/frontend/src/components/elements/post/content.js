@@ -32,7 +32,7 @@ export default class PostContent extends React.Component {
         <Header>
           Your post has been submitted!
           <Header.Subheader>
-            It may take a few moments to appear on eostalk.io, and will appear at the end of this thread.
+            It may take a few moments to appear on alpha.smoke.network, and will appear at the end of this thread.
           </Header.Subheader>
         </Header>
       ),
@@ -63,7 +63,7 @@ export default class PostContent extends React.Component {
         <Header>
           Your post has been edited
           <Header.Subheader>
-            It may take a few moments to update throughout eostalk.io.
+            It may take a few moments to update throughout alpha.smoke.network.
           </Header.Subheader>
         </Header>
       ),
