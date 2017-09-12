@@ -70,7 +70,7 @@ export default class ForumTitle extends React.Component {
               <p>
                 Managed by
                 {' '}
-                <AccountLink username='officialfuzzy' />
+                <AccountLink username='smokenetwork' />
                 {' '}
               </p>
             </Grid.Column>
