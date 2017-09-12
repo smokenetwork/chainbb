@@ -111,7 +111,7 @@ class Forums extends React.Component {
               Active Users (Posting)
               <Header.Subheader>
                 {' '}<strong>{users.stats.chainbb}</strong>{' '}
-                users have posted on eostalk, with
+                users have posted on Smoke.Network alpha, with
                 {' '}<strong>{users.stats.total}</strong>{' '}
                 users total posting on the Steem network in the last 24 hours.
               </Header.Subheader>
