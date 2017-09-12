@@ -93,10 +93,10 @@ export default class LoginModal extends React.Component {
         size='small'
         className='modal-warning'
       >
-        <Header icon='warning' content='Fair warning: This is beta software' />
+        <Header icon='warning' content='Fair warning: This is an alpha version of the Smoke.Network software' />
         <Modal.Content>
           <h3>Please use your use your keys responsibly.</h3>
-          <h5>This is beta software and you use it at your own risk. Please ensure you are only using your posting key within the site to ensure your account balance is safe.</h5>
+          <h5>This is alpha software and you use it at your own risk. Please ensure you are only using your posting key within the site to ensure your account balance is safe.</h5>
           {/*<p>For more information and best practices, please <Link to='#' rel='nofollow' target='_blank'>read our post about security and your keys</Link>.</p>*/}
         </Modal.Content>
         <Modal.Actions>
@@ -116,9 +116,10 @@ export default class LoginModal extends React.Component {
             <Message>
               <Message.Header>Before you login, please note:</Message.Header>
               <Message.List>
-                <Message.Item>eostalk uses Steem&lsquo;s Post Beneficiaries feature to support itself, at a rate of 15% on all posts created.</Message.Item>
-                <Message.Item>eostalk will only accept posting keys (WIF) for login, which are currently stored unencrypted in local storage.</Message.Item>
-                <Message.Item>eostalk is currently in <strong>BETA</strong> and still may contain bugs.</Message.Item>
+                <Message.Item>Smoke.Network uses Steem&lsquo;s Post Beneficiaries feature to support itself, at a rate of 15% on all posts created.</Message.Item>
+                <Message.Item>In return, we will promote valuable posts across our current social network, of over 500.000 fans!</Message.Item>
+                <Message.Item>Smoke.Network will only accept posting keys (WIF) for login, which are currently stored unencrypted in local storage.</Message.Item>
+                <Message.Item>Smoke.Network is currently in <strong>ALPHA</strong> and may still contain bugs.</Message.Item>
               </Message.List>
             </Message>
             <Form
