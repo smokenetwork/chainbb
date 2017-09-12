@@ -18,22 +18,10 @@ with open('config.json') as json_config_file:
     config = json.load(json_config_file)
 print(config)
 
-# Connections
-# nodes = [
-    # 'http://10.9.6.73:8090'
-    # 'http://51.15.55.185:8090'
-    # 'http://localhost:8090'
-    # 'https://steemd.steemit.com'
-    # 'http://192.168.1.25:8090'
-# ]
-
-# s = Steem(nodes)
 s = Steem(config['steemd_nodes'])
 b = Blockchain(steemd_instance=s, mode='head')
 c = Converter(steemd_instance=s)
 
-# mongo = MongoClient("mongodb://mongo")
-# mongo = MongoClient("mongodb://localhost")
 mongo = MongoClient(config['mongo_url'])
 db = mongo.forums
 
@@ -109,11 +97,14 @@ def is_filtered(comment):
         if any(tag in matched_tags for tag in json_metadata['tags']):
             return True
     else:
-        if isinstance(json_metadata, str) and len(json_metadata) > 0:
-            metadata = json.loads(json_metadata)
-            if 'tags' in metadata:
-                if any(tag in matched_tags for tag in metadata['tags']):
-                    return True
+        try:
+            if isinstance(json_metadata, str) and len(json_metadata) > 0:
+                metadata = json.loads(json_metadata)
+                if 'tags' in metadata:
+                    if any(tag in matched_tags for tag in metadata['tags']):
+                        return True
+        except ValueError as e:
+            l("ValueError {}".format(str(e)))
 
     return False
 
@@ -461,36 +452,8 @@ if __name__ == '__main__':
     scheduler.start()
 
     quick = False
-    # for block in b.stream_from(start_block=last_block_processed, batch_operations=True):
-    #     if(len(block) > 0):
-    #         block_num = block[0]['block']
-    #         timestamp = block[0]['timestamp']
-    #         # If behind by more than X (for initial indexes), set quick to true to prevent unneeded past operations
-    #         remaining_blocks = props['last_irreversible_block_num'] - block_num
-    #         if remaining_blocks > quick_value:
-    #             quick = True
-    #         dt = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")
-    #         l("----------------------------------")
-    #         l("#{} - {} - {} ops ({} remaining|quick:{})".format(block_num, dt, len(block), remaining_blocks, quick))
-    #         for op in block:
-    #             # pprint("-----------------------------")
-    #             # pprint(op)
-    #             # pprint(last_block_processed)
-    #             # pprint("-----------------------------")
-    #             # Process op
-    #             process_op(op, quick=quick)
-    #
-    #         # Update our saved block height
-    #         db.status.update({'_id': 'height_processed'}, {"$set" : {'value': block_num}}, upsert=True)
-
-
-    ######################################################################
-    # tuanpa modify to use get_block instead of get_ops_in_block to avoid enabling account_history plugin on steemd
-    # for idx,block in enumerate(b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True)):
-
-
     # last_save_height_time = time.time()
-    # last_save_block_processed = last_block_processed
+    last_save_block_processed = last_block_processed
 
     while True :
         for block in b.stream_from(start_block=last_block_processed, batch_operations=False, full_blocks=True):
@@ -518,9 +481,10 @@ if __name__ == '__main__':
                         process_op(op, block, quick=quick)
 
                 # Update our saved block height
-                # if (time.time() - last_save_height_time > 3) or (last_block_processed - last_save_block_processed > 1000):
-                db.status.update({'_id': 'height_processed'}, {"$set" : {'value': last_block_processed}}, upsert=True)
+                # (time.time() - last_save_height_time > 3)
+                if (last_block_processed - last_save_block_processed > 10):
+                    db.status.update({'_id': 'height_processed'}, {"$set" : {'value': last_block_processed}}, upsert=True)
                     # last_save_height_time = time.time()
-                    # last_save_block_processed = last_block_processed
+                    last_save_block_processed = last_block_processed
 
                 last_block_processed +=1
