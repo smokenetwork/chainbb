@@ -60,7 +60,8 @@ quick_value = 100
 # last_block_processed = 12880771
 
 
-matched_tags = ['eos', 'eosio', 'eos-project', 'eos-help', 'eos-support', 'eos-dev', 'eosdev', 'eos-dapp', 'eos-launchpad']
+matched_tags = ['smokenetwork', 'cannabis', 'marijuana', 'medicalcannabis', 'alternativemedicine', 'cannabisnews', 'joint', 'vape', 'vaporizer', 'dab', 'bong', 'tokingtools', 'growroom', 'edibles', 'infusedeats', 'smoke', 'legalize', 'smokenetworkproject', 'tripsit', 'smokehelp', 'smokesupport']
+
 
 def l(msg):
     caller = inspect.stack()[1][3]
@@ -81,13 +82,13 @@ def find_root_comment(comment):
         return find_root_comment(parent_comment)
 
 def is_filtered(comment):
-    # check if comment should be EOS content weather root post contains:
-    #   - author: eosio
-    #   - tags: eos, eosio, eos-project, eos-help, eos-support, eos-dev, eosdev, eos-dapp, eos-launchpad
+    # check if comment should be Smoke.Network content wether root post contains:
+    #   - author: smokenetwork
+    #   - tags: smokenetwork, cannabis, marijuana, medicalcannabis, alternativemedicine, cannabisnews, joint, vape, vaporizer, dab, bong, tokingtools, growroom, edibles, infusedeats, smoke, legalize, smokenetworkproject, tripsit, smokehelp, smokesupport
 
     root_comment = find_root_comment(comment)
 
-    if root_comment['author'] == 'eosio':
+    if root_comment['author'] == 'smokenetwork':
         return True
 
 
