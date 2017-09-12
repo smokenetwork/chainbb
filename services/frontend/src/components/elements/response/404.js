@@ -16,7 +16,7 @@ export default class Response404 extends React.Component {
           header='Posts may take longer to appear than usual, but will show up.'
           content={
             <p>
-              eostalk is currently behind
+              Smoke.Network alpha is currently behind
               {' '}
               <strong>{behind} blocks</strong>
               {' '}
