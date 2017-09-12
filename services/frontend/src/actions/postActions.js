@@ -286,14 +286,15 @@ export function submit(account, data, parent, action = 'post') {
     const parent_permlink = (data.existingPost) ? data.existingPost.parent_permlink : (parent) ? parent.permlink : data.category
     // JSON to append to the post
     const json_metadata = JSON.stringify({
-      app: 'eostalk/0.3',
+      app: 'smokenetwork/0.3',
       format: 'markdown+html',
       tags: data.tags
     })
     // Predefined beneficiaries for the platform
-    // 2% to jesta, 13% for the owners
+    // 2% to jesta, 2% to eostalk, 13% for the owners
     const beneficiaries = [
-      { "account":"eostalk", "weight": 1300 },
+      { "account":"smokenetwork", "weight": 1100 }
+      { "account":"eostalk", "weight": 200 },
       { "account":"chainbb", "weight": 200 }
     ]
     // The percentage overall (after platform splits) that the user receives - should be dynamic in the future
