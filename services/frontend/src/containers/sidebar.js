@@ -16,10 +16,10 @@ class Sidebar extends React.Component {
     let requestForum = (
           <Segment basic textAlign='center'>
             <Header size='small'>
-              Have an idea for a forum?
+              Want to advertise here?
             </Header>
             <p>
-              Make a post on the <Link to='/forum/chainbb'>chainBB forum</Link> with what you would like to see or any ideas you may have.
+              Email us at <Link to='mailto:hello@smoke.network'>hello@smoke.network</Link> to connect.
             </p>
           </Segment>
         )
@@ -128,7 +128,7 @@ class Sidebar extends React.Component {
 
         <Iframe url="/widget_price.html" position="relative" width="100%" height="220px" />
 
-        <Iframe url="https://discordapp.com/widget?id=335703116689440770&theme=light" position="relative" width="100%" height="425px" />
+        <Iframe url="https://discordapp.com/widget?id=336824017241505793&theme=light" position="relative" width="100%" height="425px" />
 
       </div>
     )
