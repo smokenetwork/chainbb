@@ -153,7 +153,7 @@ class HeaderMenu extends Component {
             <img src="/logo.png" />
           </Link>
           <Link to='/' className='title active item'>
-            <strong>eostalk.io</strong>
+            <strong>smoke.network</strong>
           </Link>
           {/*
           <Link to='/' className='title item'>General</Link>
