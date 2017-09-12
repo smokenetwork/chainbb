@@ -101,7 +101,7 @@ def index():
         "projects",
         "crypto",
         "community",
-        "eos"
+        "smokenetwork"
       ]}
     }
     sort = [("group_order",1),("forum_order",1)]
@@ -277,10 +277,10 @@ def steem():
     results = db.forums.find(query).sort(sort)
     return response(list(results))
 
-@app.route("/eos")
+@app.route("/smokenetwork")
 def eos():
     query = {
-      "group": {"$in": ["eos"]}
+      "group": {"$in": ["smokenetwork"]}
     }
     sort = [("group_order",1),("forum_order",1)]
     results = db.forums.find(query).sort(sort)
