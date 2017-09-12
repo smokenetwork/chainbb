@@ -124,7 +124,7 @@ class Thread extends React.Component {
         <Header>
           Your post has been submitted!
           <Header.Subheader>
-            It may take a few moments to appear on eostalk.io, and will appear at the end of this thread.
+            It may take a few moments to appear on the Smoke.Network alpha, and will appear at the end of this thread.
           </Header.Subheader>
         </Header>
       ),
