@@ -293,7 +293,7 @@ export function submit(account, data, parent, action = 'post') {
     // Predefined beneficiaries for the platform
     // 2% to jesta, 2% to eostalk, 13% for the owners
     const beneficiaries = [
-      { "account":"smokenetwork", "weight": 1100 }
+      { "account":"smokenetwork", "weight": 1100 },
       { "account":"eostalk", "weight": 200 },
       { "account":"chainbb", "weight": 200 }
     ]
